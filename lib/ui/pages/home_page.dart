@@ -107,6 +107,7 @@ class HomePage extends StatelessWidget {
           top: 30,
           left: defaultMargin,
           right: defaultMargin,
+          bottom: 100,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
