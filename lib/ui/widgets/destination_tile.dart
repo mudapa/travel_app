@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/shared/theme.dart';
+import 'package:travel_app/ui/pages/detail_page.dart';
 
 class DestinationTile extends StatelessWidget {
   final String name;
@@ -17,77 +18,87 @@ class DestinationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(
-        top: 16,
-      ),
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: kWhiteColor,
-        borderRadius: BorderRadius.circular(18),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 70,
-            height: 70,
-            margin: const EdgeInsets.only(
-              right: 16,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(18),
-              image: DecorationImage(
-                image: AssetImage(imageUrl),
-                fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const DetailPage(),
+          ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.only(
+          top: 16,
+        ),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: kWhiteColor,
+          borderRadius: BorderRadius.circular(18),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 70,
+              height: 70,
+              margin: const EdgeInsets.only(
+                right: 16,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(18),
+                image: DecorationImage(
+                  image: AssetImage(imageUrl),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style: blackTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    city,
+                    style: greyTextStyle.copyWith(
+                      fontWeight: light,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Row(
               children: [
-                Text(
-                  name,
-                  style: blackTextStyle.copyWith(
-                    fontSize: 18,
-                    fontWeight: semiBold,
+                Container(
+                  width: 20,
+                  height: 20,
+                  margin: const EdgeInsets.only(
+                    right: 2,
+                  ),
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/icon_star.png'),
+                    ),
                   ),
                 ),
-                const SizedBox(
-                  height: 5,
-                ),
                 Text(
-                  city,
-                  style: greyTextStyle.copyWith(
-                    fontWeight: light,
+                  rating.toString(),
+                  style: blackTextStyle.copyWith(
+                    fontWeight: medium,
                   ),
                 ),
               ],
             ),
-          ),
-          Row(
-            children: [
-              Container(
-                width: 20,
-                height: 20,
-                margin: const EdgeInsets.only(
-                  right: 2,
-                ),
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/icon_star.png'),
-                  ),
-                ),
-              ),
-              Text(
-                rating.toString(),
-                style: blackTextStyle.copyWith(
-                  fontWeight: medium,
-                ),
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
