@@ -11,8 +11,8 @@ class PhotoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 70,
-      height: 70,
+      width: 60,
+      height: 60,
       margin: const EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),

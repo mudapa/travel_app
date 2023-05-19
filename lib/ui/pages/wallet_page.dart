@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_app/cubit/auth_cubit.dart';
 import 'package:travel_app/shared/theme.dart';
-import 'package:travel_app/ui/widgets/custom_button.dart';
 
-class BonusPage extends StatelessWidget {
-  const BonusPage({Key? key}) : super(key: key);
+class WalletPage extends StatelessWidget {
+  const WalletPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Widget bonusCard() {
-      return BlocBuilder<AuthCubit, AuthState>(
-        builder: (context, state) {
-          if (state is AuthSuccess) {
-            return Container(
+    return BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        if (state is AuthSuccess) {
+          return Center(
+            child: Container(
               width: 300,
               height: 211,
               padding: EdgeInsets.all(
@@ -98,71 +97,12 @@ class BonusPage extends StatelessWidget {
                   ),
                 ],
               ),
-            );
-          } else {
-            return const SizedBox();
-          }
-        },
-      );
-    }
-
-    Widget title() {
-      return Container(
-        margin: const EdgeInsets.only(
-          top: 80,
-        ),
-        child: Text(
-          'Big Bonus 🎉',
-          style: blackTextStyle.copyWith(
-            fontSize: 24,
-            fontWeight: semiBold,
-          ),
-        ),
-      );
-    }
-
-    Widget subtitle() {
-      return Container(
-        margin: const EdgeInsets.only(
-          top: 10,
-        ),
-        child: Text(
-          'We give you early credit so that\nyou can buy a flight ticket',
-          style: greyTextStyle.copyWith(
-            fontSize: 16,
-            fontWeight: light,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      );
-    }
-
-    Widget startButton() {
-      return CustomButton(
-        title: 'Start Fly Now',
-        width: 220,
-        margin: const EdgeInsets.only(
-          top: 50,
-        ),
-        onPressed: () {
-          Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
-        },
-      );
-    }
-
-    return Scaffold(
-      backgroundColor: kBackgroundColor,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            bonusCard(),
-            title(),
-            subtitle(),
-            startButton(),
-          ],
-        ),
-      ),
+            ),
+          );
+        } else {
+          return const SizedBox();
+        }
+      },
     );
   }
 }
